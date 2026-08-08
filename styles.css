@@ -1,318 +1,509 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* ─────────────────────────────────────────────────────────────
+   KISANMITRA DESIGN SYSTEM & STYLESHEET
+   Palette: Warm Cream (#F6F1E4), Deep Forest Green (#1F3D2B), Gold Accent (#C99A2E)
+   Fonts: Fraunces (Headlines) & Inter (Body)
+   ───────────────────────────────────────────────────────────── */
 
-html, body, [class*="css"] {
-    font-family: 'Inter', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ── Streamlit UI Overrides ── */
+#MainMenu, header, footer {
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
-.stApp {
-    background: #f4f9f4;
-    min-height: 100vh;
-}
-#MainMenu, footer, header { visibility: hidden; }
+
 .block-container {
-    padding-top: 1.5rem;
-    padding-bottom: 2rem;
-    max-width: 1100px;
+    max-width: 1200px !important;
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
 }
 
-/* NAVBAR */
-.nav-logo {
-    font-size: 1.3rem;
+.stApp {
+    background-color: #F6F1E4 !important;
+    font-family: 'Inter', sans-serif !important;
+    color: #1A261D !important;
+}
+
+/* ── Typography Tokens ── */
+.serif-title {
+    font-family: 'Fraunces', serif !important;
+    letter-spacing: -0.02em;
+}
+
+.gold-accent {
+    color: #C99A2E !important;
+}
+
+.forest-green {
+    color: #1F3D2B !important;
+}
+
+/* ── Sticky Top Nav Bar ── */
+.km-nav-wrapper {
+    background: rgba(246, 241, 228, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid #E2D9C8;
+    padding: 12px 20px;
+    margin-bottom: 24px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.km-nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: #1b5e20;
-    padding: 14px 0;
+    color: #1F3D2B;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
 }
 
-/* HERO */
-.hero {
-    background: #0f3d1a;
+.km-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #3A4A3E;
+}
+
+.km-nav-links a {
+    color: #3A4A3E;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.km-nav-links a:hover {
+    color: #C99A2E;
+}
+
+/* ── Hero Section ── */
+.km-hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #E8F0E9;
+    color: #1F3D2B;
+    border: 1px solid #C4D8C7;
+    border-radius: 30px;
+    padding: 6px 16px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.km-hero-h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 3.1rem;
+    font-weight: 800;
+    line-height: 1.12;
+    color: #1F3D2B;
+    margin-bottom: 18px;
+}
+
+.km-hero-sub {
+    font-size: 1.08rem;
+    line-height: 1.6;
+    color: #4A5A4E;
+    margin-bottom: 28px;
+    max-width: 580px;
+}
+
+/* ── Telemetry Live Card (Hero Right) ── */
+.km-telemetry-card {
+    background: #FFFFFF;
+    border: 1px solid #E2D9C8;
     border-radius: 20px;
-    padding: 56px 48px;
-    margin-bottom: 20px;
-    text-align: center;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(31, 61, 43, 0.07);
     position: relative;
     overflow: hidden;
 }
-.hero-tag {
-    display: inline-block;
-    background: rgba(45,140,69,0.35);
-    color: #7de8a0;
-    font-size: 12px;
-    padding: 5px 16px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    border: 1px solid rgba(125,232,160,0.3);
-}
-.hero-h1 {
-    font-size: 2.6rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 14px;
-    line-height: 1.25;
-}
-.hero-sub {
-    font-size: 1rem;
-    color: rgba(255,255,255,0.65);
-    margin-bottom: 32px;
-    line-height: 1.6;
+
+.km-telemetry-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1F3D2B 0%, #C99A2E 100%);
 }
 
-/* FEATURE GRID */
-.feat-grid {
+.km-telemetry-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #F0E8D8;
+}
+
+.km-telemetry-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #6C7C70;
+    text-transform: uppercase;
+}
+
+.km-live-pulse {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #2E7D32;
+    background: #E8F5E9;
+    padding: 3px 10px;
+    border-radius: 12px;
+}
+
+.km-pulse-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #2E7D32;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.3);
+}
+
+.km-telemetry-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
-.feat-card {
-    background: white;
-    border: 1px solid #e0ede0;
-    border-radius: 14px;
-    padding: 18px 16px;
-    transition: transform 0.15s;
+
+.km-tele-item {
+    background: #FAF7F0;
+    border: 1px solid #EAE0CE;
+    border-radius: 12px;
+    padding: 12px 14px;
 }
-.feat-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(46,125,50,0.1);
+
+.km-tele-val {
+    font-family: 'Fraunces', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #1F3D2B;
+    line-height: 1.1;
 }
-.feat-icon-box {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
+
+.km-tele-lbl {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #6C7C70;
+    margin-top: 3px;
+}
+
+.km-tele-footer {
+    background: #1F3D2B;
+    color: #FFFFFF;
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ── Hero Stats Row ── */
+.km-quick-stats {
+    background: #FFFFFF;
+    border: 1px solid #E2D9C8;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-top: 32px;
+    margin-bottom: 48px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-align: center;
+}
+
+.km-qs-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: #1F3D2B;
+}
+
+.km-qs-lbl {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #6C7C70;
+    margin-top: 2px;
+}
+
+/* ── Section Title Component ── */
+.km-section-header {
+    text-align: center;
+    margin-top: 48px;
+    margin-bottom: 36px;
+}
+
+.km-section-tag {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #C99A2E;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.km-section-h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1F3D2B;
+    margin-bottom: 10px;
+}
+
+.km-section-sub {
+    font-size: 1rem;
+    color: #5E6E62;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ── Feature Plot Cards ── */
+.km-plot-card {
+    background: #FFFFFF;
+    border: 1px solid #E2D9C8;
+    border-radius: 18px;
+    padding: 24px 20px;
+    margin-bottom: 16px;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.km-plot-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(31, 61, 43, 0.08);
+}
+
+.km-plot-card.highlight {
+    background: #FAF6ED;
+    border: 2px solid #C99A2E;
+    box-shadow: 0 8px 24px rgba(201, 154, 46, 0.15);
+}
+
+.km-plot-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.km-plot-badge {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #1F3D2B;
+    background: #E8F0E9;
+    padding: 3px 10px;
+    border-radius: 8px;
+}
+
+.km-plot-badge.gold {
+    background: #FDF4DF;
+    color: #9E7419;
+    border: 1px solid #F3DBA2;
+}
+
+.km-plot-icon {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.km-plot-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1F3D2B;
+    margin-bottom: 8px;
+}
+
+.km-plot-desc {
+    font-size: 0.88rem;
+    color: #5E6E62;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+/* ── About Section (Dark Green Full Bleed) ── */
+.km-about-banner {
+    background: #1F3D2B;
+    color: #FFFFFF;
+    border-radius: 24px;
+    padding: 48px 36px;
+    margin-top: 56px;
+    margin-bottom: 56px;
+    position: relative;
+    overflow: hidden;
+}
+
+.km-about-banner::after {
+    content: "🌾";
+    position: absolute;
+    right: 20px;
+    bottom: -20px;
+    font-size: 180px;
+    opacity: 0.06;
+    pointer-events: none;
+}
+
+.km-about-h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 14px;
+}
+
+.km-about-p {
+    font-size: 1.02rem;
+    color: #D2DFD5;
+    line-height: 1.65;
+    max-width: 720px;
+    margin-bottom: 32px;
+}
+
+.km-about-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 28px;
+}
+
+.km-ab-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #C99A2E;
+}
+
+.km-ab-lbl {
+    font-size: 0.85rem;
+    color: #D2DFD5;
+    margin-top: 2px;
+}
+
+/* ── Showcase Cards ── */
+.km-showcase-card {
+    background: #FFFFFF;
+    border: 1px solid #E2D9C8;
+    border-radius: 18px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.km-showcase-img-box {
+    background: linear-gradient(135deg, #1F3D2B 0%, #2D5A3F 100%);
+    height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    color: #FFFFFF;
+    font-size: 3.5rem;
+}
+
+.km-showcase-body {
+    padding: 20px;
+}
+
+.km-showcase-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1F3D2B;
+    margin-bottom: 6px;
+}
+
+.km-showcase-text {
+    font-size: 0.86rem;
+    color: #5E6E62;
+    line-height: 1.48;
+}
+
+/* ── CTA Banner ── */
+.km-cta-banner {
+    background: linear-gradient(135deg, #1F3D2B 0%, #162E21 100%);
+    border: 2px solid #C99A2E;
+    border-radius: 24px;
+    padding: 44px 32px;
+    text-align: center;
+    margin-top: 56px;
+    margin-bottom: 40px;
+    color: #FFFFFF;
+}
+
+.km-cta-h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
     margin-bottom: 12px;
 }
-.feat-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a2e1a;
-    margin-bottom: 5px;
-}
-.feat-desc {
-    font-size: 12px;
-    color: #607060;
-    line-height: 1.5;
-}
-.feat-badge {
-    display: inline-block;
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 10px;
-    margin-top: 8px;
-    font-weight: 500;
-}
-.badge-live { background: #e8f5e9; color: #2e7d32; }
-.badge-soon { background: #fff8e1; color: #f57f17; }
 
-/* HOW IT WORKS */
-.how-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    align-items: flex-start;
-}
-.step-card {
-    flex: 1;
-    background: white;
-    border-radius: 14px;
-    padding: 16px;
-    text-align: center;
-    border: 1px solid #e0ede0;
-}
-.step-num {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #2d8c45;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 10px;
-}
-.step-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: #1a2e1a;
-    margin-bottom: 4px;
-}
-.step-desc { font-size: 11px; color: #607060; }
-.arrow-div {
-    display: flex;
-    align-items: center;
-    padding-top: 16px;
-    color: #aaa;
-    font-size: 20px;
+.km-cta-sub {
+    font-size: 1rem;
+    color: #D2DFD5;
+    margin-bottom: 24px;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* CTA STRIP */
-.cta-strip {
-    background: linear-gradient(135deg, #1b5e20, #2e7d32);
-    border-radius: 16px;
-    padding: 24px 32px;
-    margin-bottom: 20px;
-}
-.cta-text { color: #fff; font-size: 1.1rem; font-weight: 600; }
-.cta-sub { color: rgba(255,255,255,0.7); font-size: 12px; margin-top: 4px; }
-
-/* BUTTONS */
-.stButton > button {
-    background: linear-gradient(135deg, #2e7d32, #43a047) !important;
-    color: white !important;
-    border: none !important;
+/* ── Streamlit Custom Button Override ── */
+div.stButton > button {
+    background-color: #1F3D2B !important;
+    color: #FFFFFF !important;
+    border: 1px solid #1F3D2B !important;
     border-radius: 10px !important;
-    padding: 10px 28px !important;
-    font-size: 14px !important;
+    padding: 10px 20px !important;
+    font-family: 'Inter', sans-serif !important;
     font-weight: 600 !important;
-    width: 100% !important;
+    font-size: 0.92rem !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 3px 8px rgba(31, 61, 43, 0.12) !important;
 }
 
-/* INPUT CARD */
-.input-card {
-    background: white;
-    border-radius: 16px;
-    padding: 24px 24px 16px;
-    box-shadow: 0 2px 16px rgba(46,125,50,0.07);
-    margin-bottom: 20px;
-    border: 1px solid #e8f5e9;
-}
-.stTextInput > div > div > input {
-    border-radius: 10px !important;
-    border: 1.5px solid #c8e6c9 !important;
-    padding: 10px 14px !important;
-    font-size: 14px !important;
-}
-.stTextInput > div > div > input:focus {
-    border-color: #2e7d32 !important;
-    box-shadow: 0 0 0 3px rgba(46,125,50,0.1) !important;
+div.stButton > button:hover {
+    background-color: #C99A2E !important;
+    color: #1F3D2B !important;
+    border-color: #C99A2E !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(201, 154, 46, 0.25) !important;
 }
 
-/* SECTION HEADING */
-.section-heading {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #1b5e20;
-    margin: 22px 0 12px;
+div.stButton > button:active {
+    transform: translateY(0) !important;
 }
 
-/* WEATHER CARDS */
-.weather-card {
-    background: white;
-    border-radius: 14px;
-    padding: 16px;
-    text-align: center;
-    border: 1px solid #e8f5e9;
-    transition: transform 0.2s;
-}
-.weather-card:hover { transform: translateY(-3px); }
-.wc-value { font-size: 1.6rem; font-weight: 700; color: #2e7d32; line-height: 1.1; }
-.wc-label { font-size: 0.75rem; color: #78909c; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-.wc-icon  { font-size: 1.4rem; margin-bottom: 5px; }
-
-/* FORECAST CARDS */
-.forecast-card {
-    background: white;
-    border-radius: 14px;
-    padding: 16px;
-    text-align: center;
-    border: 1px solid #e8f5e9;
-}
-.forecast-day  { font-weight: 600; color: #37474f; font-size: 0.85rem; }
-.forecast-temp { font-size: 1.2rem; font-weight: 700; color: #2e7d32; margin: 4px 0; }
-.forecast-desc { font-size: 0.78rem; color: #78909c; }
-.forecast-rain { font-size: 0.78rem; color: #1565c0; margin-top: 4px; }
-
-.advice-card {
-    border-radius: 12px;
-    padding: 13px 16px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-.advice-success { background: #f1f8e9; border-left: 4px solid #43a047; color: #1b5e20; }
-.advice-warning { background: #fff8e1; border-left: 4px solid #ffb300; color: #6d4c00; }
-.advice-danger  { background: #fce4ec; border-left: 4px solid #e53935; color: #7f0000; }
-.advice-icon    { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
-
-
-.status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border-radius: 30px;
-    padding: 9px 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 14px;
-}
-.status-good    { background: #e8f5e9; color: #2e7d32; border: 1.5px solid #a5d6a7; }
-.status-caution { background: #fff8e1; color: #f57f17; border: 1.5px solid #ffe082; }
-.status-alert   { background: #fce4ec; color: #c62828; border: 1.5px solid #ef9a9a; }
-
-
-.location-tag {
-    background: #e8f5e9;
-    color: #2e7d32;
-    border-radius: 20px;
-    padding: 4px 14px;
-    font-size: 0.83rem;
-    font-weight: 500;
-    display: inline-block;
-    margin-bottom: 14px;
+/* Gold CTA Button styling */
+div.gold-btn > div.stButton > button {
+    background-color: #C99A2E !important;
+    color: #1F3D2B !important;
+    border-color: #C99A2E !important;
+    font-weight: 700 !important;
 }
 
-.error-box {
-    background: #fce4ec;
-    border: 1px solid #ef9a9a;
-    border-radius: 12px;
-    padding: 14px 18px;
-    color: #7f0000;
-    font-size: 0.9rem;
-}
-
-.coming-soon {
-    text-align: center;
-    padding: 80px 20px;
-    background: white;
-    border-radius: 20px;
-    border: 1px solid #e0ede0;
-}
-.cs-icon  { font-size: 4rem; margin-bottom: 16px; }
-.cs-title { font-size: 1.6rem; font-weight: 700; color: #1a2e1a; margin-bottom: 10px; }
-.cs-sub   { font-size: 0.95rem; color: #607060; margin-bottom: 24px; line-height: 1.6; }
-.cs-badge {
-    display: inline-block;
-    background: #fff8e1;
-    color: #f57f17;
-    border: 1px solid #ffe082;
-    border-radius: 20px;
-    padding: 6px 20px;
-    font-size: 13px;
-    font-weight: 500;
-}
-.coming-feat-card {
-    background: white;
-    border: 1px solid #e0ede0;
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-/* FOOTER */
-.footer {
-    text-align: center;
-    color: #90a4ae;
-    font-size: 0.78rem;
-    margin-top: 40px;
-    padding-bottom: 20px;
+div.gold-btn > div.stButton > button:hover {
+    background-color: #E2B038 !important;
+    color: #1F3D2B !important;
 }

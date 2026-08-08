@@ -1,7 +1,7 @@
 import streamlit as st
-from utils import load_css
+from utils import load_css, render_footer
 
-# ── Page config ────────────────────────────────────────────
+# ── Page config (must be first Streamlit call) ────────────────
 st.set_page_config(
     page_title="KisanMitra – Smart Farming Advisor",
     page_icon="🌾",
@@ -9,13 +9,14 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+# Load global CSS stylesheet with UTF-8 encoding
 load_css()
 
-# ── Default page ───────────────────────────────────────────
+# Initialize session state for navigation
 if "page" not in st.session_state:
     st.session_state.page = "landing"
 
-# ── Import all section modules ─────────────────────────────
+# Import all section modules from sections/
 from sections import (
     landing,
     menu,
@@ -28,18 +29,29 @@ from sections import (
     market,
 )
 
-# ── Router ─────────────────────────────────────────────────
-p = st.session_state.page
+# ── Router ──────────────────────────────────────────────────
+current_page = st.session_state.page
 
-if   p == "landing":    landing.show()
-elif p == "menu":       menu.show()
-elif p == "advisor":    advisor.show()
-elif p == "harvest":    harvest.show()
-elif p == "hyperlocal": hyperlocal.show()
-elif p == "alerts":     alerts.show()
-elif p == "satellite":  satellite.show()
-elif p == "soil":       soil.show()
-elif p == "market":     market.show()
+if current_page == "landing":
+    landing.show()
+elif current_page == "menu":
+    menu.show()
+elif current_page == "advisor":
+    advisor.show()
+elif current_page == "harvest":
+    harvest.show()
+elif current_page == "hyperlocal":
+    hyperlocal.show()
+elif current_page == "alerts":
+    alerts.show()
+elif current_page == "satellite":
+    satellite.show()
+elif current_page == "soil":
+    soil.show()
+elif current_page == "market":
+    market.show()
 else:
     st.session_state.page = "landing"
     st.rerun()
+
+render_footer()
