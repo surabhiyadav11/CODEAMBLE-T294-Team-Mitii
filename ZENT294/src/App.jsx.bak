@@ -1,0 +1,434 @@
+import { ArrowRight, BadgeCheck, Leaf, Sparkles, Waves, Wheat, Zap } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import NavBar from './components/NavBar';
+import SectionHeading from './components/SectionHeading';
+import FeatureCard from './components/FeatureCard';
+import OrganicCard from './components/OrganicCard';
+import Footer from './components/Footer';
+import {
+  featureDashboard,
+  homeHighlights,
+  organicGroups,
+  organicSteps,
+  serviceCards,
+  trustLogos,
+} from './data';
+
+function AccentBlob({ className }) {
+  return <div className={`pointer-events-none absolute rounded-full blur-3xl ${className}`} />;
+}
+
+function HomePage({ onNavigate }) {
+  return (
+    <main className="animate-reveal">
+      <section className="relative overflow-hidden">
+        <AccentBlob className="left-[-6rem] top-12 h-56 w-56 bg-[radial-gradient(circle,rgba(245,158,11,0.28),transparent_70%)]" />
+        <AccentBlob className="right-[-4rem] top-24 h-72 w-72 bg-[radial-gradient(circle,rgba(30,81,40,0.16),transparent_72%)]" />
+
+        <div className="section-shell grid gap-8 pb-12 pt-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-12 lg:pb-16 lg:pt-16">
+          <div className="max-w-2xl">
+            <div className="eyebrow mb-4">KisanMitra Agriculture Initiative</div>
+            <h1 className="display-title max-w-xl text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
+              A reliable partner for every farmer across India
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-maroon/70 sm:text-lg">
+              Access expert agricultural advice, updated market rates, and government support schemes tailored to your local soil and climate.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={() => onNavigate('features')}
+                className="pill-button bg-forest px-5 py-3 text-white shadow-[0_16px_30px_rgba(30,81,40,0.22)] hover:-translate-y-0.5 hover:bg-forestSoft"
+              >
+                Explore features
+                <ArrowRight className="ml-2" size={16} />
+              </button>
+              <button
+                type="button"
+                onClick={() => onNavigate('organic')}
+                className="pill-button border border-creamLine bg-white/70 px-5 py-3 text-maroon hover:-translate-y-0.5 hover:border-forest/30 hover:text-forest"
+              >
+                Try organic wizard
+              </button>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-amber-100 via-white to-forest/10 blur-2xl" />
+            <div className="overflow-hidden rounded-[2rem] border border-creamLine bg-white shadow-soft">
+              <img
+                src="/hero.jpg"
+                alt="Smiling Indian farmer in a mustard field"
+                className="h-[20rem] w-full object-cover sm:h-[24rem] lg:h-[30rem]"
+              />
+            </div>
+            <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/88 px-4 py-2 text-xs font-semibold text-forest shadow-[0_10px_22px_rgba(74,21,33,0.12)] backdrop-blur-md">
+              <BadgeCheck size={14} />
+              Trusted local guidance
+            </div>
+          </div>
+        </div>
+
+        <div className="section-shell grid gap-5 pb-6 sm:grid-cols-3">
+          {homeHighlights.map((item) => (
+            <div key={item.code} className="interactive-card p-6">
+              <div className="text-[11px] font-black uppercase tracking-[0.3em] text-rose">{item.code}. {item.title}</div>
+              <p className="mt-5 text-sm leading-7 text-maroon/70">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function AboutPage() {
+  return (
+    <main className="animate-reveal">
+      <section className="section-shell py-12 lg:py-16">
+        <SectionHeading
+          eyebrow="Support"
+          title="How we help you grow"
+          description="Comprehensive support designed for the daily realities of Indian agriculture."
+        />
+
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {serviceCards.map((card) => (
+            <FeatureCard
+              key={card.title}
+              eyebrow="Service"
+              title={card.title}
+              description={card.description}
+              action={card.action}
+            />
+          ))}
+        </div>
+
+        <div className="mt-14 rounded-[2rem] border border-creamLine bg-white/58 p-7 shadow-soft sm:p-10">
+          <div className="display-title text-center text-2xl font-bold sm:text-3xl">Built on trust and community</div>
+          <blockquote className="mx-auto mt-6 max-w-3xl text-center font-display text-lg italic leading-8 text-maroon/70 sm:text-xl">
+            “KisanMitra has changed how I plan my sowing season. The weather alerts are accurate and help me save water and money.”
+          </blockquote>
+          <p className="mt-4 text-center text-sm font-semibold text-maroon">Rajesh Kumar, Wheat Farmer, Punjab</p>
+
+          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {trustLogos.map((label) => (
+              <div key={label} className="rounded-2xl border border-creamLine bg-creamSoft px-4 py-4 text-center text-sm text-maroon/55">
+                {label}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-14 rounded-[2rem] bg-maroon px-6 py-10 text-white shadow-soft sm:px-10 sm:py-12">
+          <div className="max-w-3xl">
+            <h3 className="font-display text-3xl font-semibold leading-tight sm:text-4xl">Ready to improve your yield?</h3>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/72 sm:text-base">
+              Call our toll-free helpline or send us a WhatsApp message to start receiving alerts today.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function FeaturePortalPage({ onNavigate }) {
+  return (
+    <main className="animate-reveal">
+      <section className="section-shell py-12 lg:py-16">
+        <SectionHeading
+          eyebrow="Feature portal"
+          title="Everything your farming workflow needs"
+          description="A clean dashboard for the seven core modules already present in the Python application, styled as a modern React surface without changing the underlying ML or feature code."
+        />
+
+        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {featureDashboard.map((card) => (
+            <FeatureCard
+              key={card.key}
+              eyebrow={card.key}
+              title={card.badge}
+              description={card.description}
+              action="Open module"
+              accent={card.accent}
+              icon={card.emoji}
+              onClick={() => onNavigate(card.key)}
+            />
+          ))}
+        </div>
+
+        <div className="mt-12 rounded-[2rem] border border-creamLine bg-white/60 p-6 sm:p-8">
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="rounded-3xl bg-gradient-to-br from-emerald-50 to-white p-5">
+              <div className="flex items-center gap-3 text-forest">
+                <Leaf size={18} />
+                <span className="text-sm font-semibold uppercase tracking-[0.24em]">Weather + advice</span>
+              </div>
+              <p className="mt-4 text-sm leading-7 text-maroon/70">One place to surface model-backed advisories from the existing advisor module.</p>
+            </div>
+            <div className="rounded-3xl bg-gradient-to-br from-amber-50 to-white p-5">
+              <div className="flex items-center gap-3 text-maroon">
+                <Wheat size={18} />
+                <span className="text-sm font-semibold uppercase tracking-[0.24em]">Market timing</span>
+              </div>
+              <p className="mt-4 text-sm leading-7 text-maroon/70">Visual cards and CTAs can later connect directly to live mandi pricing responses.</p>
+            </div>
+            <div className="rounded-3xl bg-gradient-to-br from-sky-50 to-white p-5">
+              <div className="flex items-center gap-3 text-forest">
+                <Waves size={18} />
+                <span className="text-sm font-semibold uppercase tracking-[0.24em]">Alerts + soil</span>
+              </div>
+              <p className="mt-4 text-sm leading-7 text-maroon/70">Alert and soil workflows remain separate, so the backend feature modules stay intact.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <Footer />
+    </main>
+  );
+}
+
+function OrganicPage() {
+  const defaultSelected = [
+    'Indigenous cow dung',
+    'Cow urine',
+    'Jaggery',
+    'Gram flour (besan)',
+    'Live bund soil',
+    'Clean water',
+  ];
+  const [step, setStep] = useState(1);
+  const [selected, setSelected] = useState(new Set(defaultSelected));
+  const [customEntry, setCustomEntry] = useState('');
+  const [extraInputVisible, setExtraInputVisible] = useState(false);
+
+  const selectedCount = selected.size;
+
+  const recipeSummary = useMemo(() => {
+    if (selectedCount >= 10) {
+      return 'Strong Jeevamrut base with richer microbial activity.';
+    }
+    if (selectedCount >= 6) {
+      return 'Balanced starter mix suitable for a standard village batch.';
+    }
+    return 'Add more ingredients to unlock a fuller recipe recommendation.';
+  }, [selectedCount]);
+
+  const toggleItem = (item) => {
+    setSelected((current) => {
+      const next = new Set(current);
+      if (next.has(item)) {
+        next.delete(item);
+      } else {
+        next.add(item);
+      }
+      return next;
+    });
+  };
+
+  const addCustomItem = () => {
+    const value = customEntry.trim();
+    if (!value) {
+      return;
+    }
+    setSelected((current) => new Set([...current, value]));
+    setCustomEntry('');
+    setExtraInputVisible(false);
+  };
+
+  return (
+    <main className="animate-reveal">
+      <section className="section-shell py-12 lg:py-14">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <div className="eyebrow mb-3 text-amber-700">BIO-INPUT WIZARD</div>
+            <h2 className="display-title max-w-3xl text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
+              Make your own Jeevamrut, Beejamrut and more
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-maroon/70 sm:text-base">
+              Tell us what is available in your village today. We will size the recipe to your drum, show the fermentation timeline day by day, and calculate how many rupees you save against chemical inputs.
+            </p>
+          </div>
+          <button type="button" className="hidden items-center gap-2 rounded-full border border-creamLine bg-white/80 px-4 py-2 text-sm font-semibold text-maroon transition duration-300 hover:border-forest/30 hover:text-forest md:inline-flex">
+            <Sparkles size={15} />
+            Start over
+          </button>
+        </div>
+
+        <div className="mt-8 grid gap-3 sm:grid-cols-4">
+          {organicSteps.map((label, index) => {
+            const current = index + 1;
+            const active = current === step;
+            const done = current < step;
+            return (
+              <button
+                key={label}
+                type="button"
+                onClick={() => setStep(current)}
+                className={`rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition duration-300 ${
+                  active
+                    ? 'border-forest bg-forest text-white shadow-[0_16px_28px_rgba(30,81,40,0.22)]'
+                    : done
+                      ? 'border-forest/25 bg-white text-forest'
+                      : 'border-creamLine bg-white/70 text-maroon/65 hover:border-forest/30 hover:text-forest'
+                }`}
+              >
+                {current}. {label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-10 grid gap-8 xl:grid-cols-[1.2fr_0.8fr]">
+          <div className="rounded-[2rem] border border-creamLine bg-white/60 p-5 sm:p-7">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h3 className="display-title text-2xl font-semibold">What do you have on hand?</h3>
+                <p className="mt-2 text-sm text-maroon/70">
+                  Tap every material available in your farm or village. Selected: {selectedCount}
+                </p>
+              </div>
+              <div className="rounded-full bg-forest px-4 py-2 text-sm font-semibold text-white">Step {step} of 4</div>
+            </div>
+
+            <div className="mt-8 space-y-7">
+              {organicGroups.map((group) => (
+                <div key={group.title}>
+                  <div className="text-[11px] font-black uppercase tracking-[0.32em] text-maroon/35">{group.title}</div>
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                    {group.items.map((item) => (
+                      <OrganicCard
+                        key={item}
+                        label={item}
+                        selected={selected.has(item)}
+                        onClick={() => toggleItem(item)}
+                        icon={selected.has(item) ? '✓' : '◌'}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+
+              <div>
+                <div className="text-[11px] font-black uppercase tracking-[0.32em] text-maroon/35">Extra</div>
+                <div className="mt-3 grid gap-3 lg:grid-cols-[1fr_auto]">
+                  <input
+                    value={customEntry}
+                    onChange={(event) => setCustomEntry(event.target.value)}
+                    placeholder="Add a custom ingredient..."
+                    className="w-full rounded-2xl border border-creamLine bg-white px-4 py-3 text-sm text-maroon outline-none transition duration-300 placeholder:text-maroon/35 focus:border-forest focus:ring-2 focus:ring-forest/10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setExtraInputVisible((current) => !current)}
+                    className="rounded-2xl border border-creamLine bg-blush px-5 py-3 text-sm font-semibold text-maroon transition duration-300 hover:-translate-y-0.5 hover:border-forest/30 hover:text-forest"
+                  >
+                    Extra
+                  </button>
+                </div>
+                {extraInputVisible ? (
+                  <div className="mt-3 flex flex-wrap items-center gap-3 rounded-2xl border border-dashed border-forest/25 bg-forest/5 p-4">
+                    <button
+                      type="button"
+                      onClick={addCustomItem}
+                      className="rounded-full bg-forest px-4 py-2 text-sm font-semibold text-white"
+                    >
+                      Add custom item
+                    </button>
+                    <span className="text-sm text-maroon/60">The typed ingredient will be included in the selected count.</span>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          </div>
+
+          <aside className="space-y-5">
+            <div className="rounded-[2rem] bg-maroon p-6 text-white shadow-soft">
+              <div className="flex items-center gap-3 text-amber-200">
+                <Zap size={18} />
+                <span className="text-xs font-black uppercase tracking-[0.35em]">Recipe preview</span>
+              </div>
+              <h3 className="mt-4 font-display text-3xl font-semibold">Your mixture is taking shape</h3>
+              <p className="mt-4 text-sm leading-7 text-white/75">{recipeSummary}</p>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
+                <div className="rounded-2xl bg-white/10 p-4">
+                  <div className="text-[11px] uppercase tracking-[0.3em] text-white/45">Active ingredients</div>
+                  <div className="mt-2 text-2xl font-bold text-white">{selectedCount}</div>
+                </div>
+                <div className="rounded-2xl bg-white/10 p-4">
+                  <div className="text-[11px] uppercase tracking-[0.3em] text-white/45">Step</div>
+                  <div className="mt-2 text-2xl font-bold text-white">{step} of 4</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-creamLine bg-white/65 p-6">
+              <div className="flex items-center gap-3 text-forest">
+                <Leaf size={18} />
+                <span className="text-xs font-black uppercase tracking-[0.35em]">Ingredient summary</span>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {Array.from(selected).slice(0, 10).map((item) => (
+                  <span key={item} className="rounded-full bg-forest/8 px-3 py-1.5 text-xs font-semibold text-forest">
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-5 text-sm leading-7 text-maroon/70">
+                Use the selected materials to generate the right bio-input ratio for your village stock.
+              </p>
+            </div>
+          </aside>
+        </div>
+
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-creamLine pt-6 sm:flex-row">
+          <button type="button" className="rounded-full border border-creamLine bg-white/70 px-5 py-3 text-sm font-semibold text-maroon transition duration-300 hover:border-forest/30 hover:text-forest">
+            ← Back
+          </button>
+          <div className="text-sm text-maroon/55">Step {step} of 4</div>
+          <button
+            type="button"
+            onClick={() => setStep((current) => Math.min(4, current + 1))}
+            className="rounded-full bg-forest px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_26px_rgba(30,81,40,0.24)] transition duration-300 hover:-translate-y-0.5 hover:bg-forestSoft"
+          >
+            Next →
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+export default function App() {
+  const [page, setPage] = useState('home');
+  const activeNavPage = ['advisor', 'harvest', 'hyperlocal', 'alerts', 'satellite', 'soil', 'market'].includes(page)
+    ? 'features'
+    : page;
+
+  const content = {
+    home: <HomePage onNavigate={setPage} />,
+    about: <AboutPage />,
+    features: <FeaturePortalPage onNavigate={setPage} />,
+    organic: <OrganicPage />,
+    advisor: <FeaturePortalPage onNavigate={setPage} />,
+    harvest: <FeaturePortalPage onNavigate={setPage} />,
+    hyperlocal: <FeaturePortalPage onNavigate={setPage} />,
+    alerts: <FeaturePortalPage onNavigate={setPage} />,
+    satellite: <FeaturePortalPage onNavigate={setPage} />,
+    soil: <FeaturePortalPage onNavigate={setPage} />,
+    market: <FeaturePortalPage onNavigate={setPage} />,
+  };
+
+  return (
+    <div className="min-h-screen overflow-hidden text-maroon">
+      <div className="absolute inset-x-0 top-0 -z-10 h-[28rem] bg-[radial-gradient(circle_at_top,rgba(245,158,11,0.18),transparent_55%)]" />
+      <NavBar activePage={activeNavPage} onNavigate={setPage} />
+      {content[page] ?? content.home}
+      {page === 'about' ? <Footer /> : null}
+      {page === 'features' ? <Footer /> : null}
+      {page === 'organic' ? <Footer /> : null}
+    </div>
+  );
+}
